@@ -12,21 +12,30 @@ Route::get('/', function () {
 });
 
 Route::controller(AuthenticationController::class)->group(function () {
-    Route::get('/login', 'showLogin')->name('login.get');
+    Route::get('/login', 'showLogin')->name('login');
     Route::post('/login', 'login')->name('login.post');
-    Route::get('/register', 'showRegister')->name('register.get');
+    Route::get('/register', 'showRegister')->name('register');
     Route::post('/register', 'register')->name('register.post');
 });
 
-Route::controller(DashboardController::class)->group(function () {
-    Route::get('/dashboard', 'show')->name('dashboard.index');
-})->middleware('auth')->name('dashboard');
+Route::controller(DashboardController::class)
+    ->middleware('auth')
+    ->name('dashboard')
+    ->group(function () {
+        Route::get('/dashboard', 'show')->name('.index');
+});
 
-Route::controller(UserDataController::class)->group(function () {
-    Route::post('/fill_data', 'fill_data')->name('userdata.fill.post');
-    Route::get('/fill_data', 'showFillData')->name('userdata.fill.get');
-})->middleware('auth')->name('userdata');
+Route::controller(UserDataController::class)
+    ->middleware('auth')
+    ->name('userdata')
+    ->group(function () {
+        Route::post('/fill_data', 'fill_data')->name('.fill.post');
+        Route::get('/fill_data', 'showFillData')->name('.fill');
+});
 
-Route::controller(RecordController::class)->group(function () {
-    Route::post('/insert_record', 'insert')->name('record.insert');
-})->middleware('auth')->name('record');
+Route::controller(RecordController::class)
+    ->middleware('auth')
+    ->name('record')
+    ->group(function () {
+        Route::post('/insert_record', 'insert')->name('.insert');
+});

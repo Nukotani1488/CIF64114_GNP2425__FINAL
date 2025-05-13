@@ -26,10 +26,14 @@ class RecordController extends Controller
         $record->emotion_after = $validated['emotion_after'];
 
         if ($record->save()) {
-            return redirect()->route('dashboard.index')->with('success', 'Record created successfully');
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Record inserted successfully',
+            ]);
         } else {
-            return redirect()->back()->withErrors([
-                'name' => 'Failed to create record',
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Failed to insert record',
             ]);
         }
     }

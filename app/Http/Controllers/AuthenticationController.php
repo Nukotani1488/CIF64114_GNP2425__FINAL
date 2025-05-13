@@ -54,7 +54,7 @@ class AuthenticationController extends Controller
         $user->password = bcrypt($validated['password']);
         $user->save();
 
-        return redirect()->route('login.get')->with('success', 'User created successfully');
+        return redirect()->route('login')->with('success', 'User created successfully');
     }
 
     function showLogin(Request $request)
