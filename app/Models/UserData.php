@@ -40,7 +40,7 @@ class UserData extends Model
 
             $amr = $bmr * 1.2;
 
-            return 0.1 * $amr;
+            return (0.1 * $amr) / 4;
         }
     }
 }
