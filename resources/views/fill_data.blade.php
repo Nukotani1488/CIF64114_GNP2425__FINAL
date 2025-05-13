@@ -36,9 +36,11 @@
         @csrf
         <input type="submit" value="Submit">
     </form>
-    @foreach ($errors->all() as $error)
-        <p style="color: red;">{{ $error }}</p>
-    @endforeach
+    @if ($errors)
+        @foreach ($errors->all() as $error)
+    <p style="color: red;">{{ $error }}</p>
+        @endforeach
+    @endif
 </body>
 
 </html>
