@@ -27,9 +27,7 @@ class Record extends Model
         return $this->belongsTo(Food::class, 'gid', 'id');
     }
 
-    public $sugar_content {
-        get {
-            return $this->food->sugar_content;
-        }
+    function getSugarContent() {
+        return $this->food->sugar_content;
     }
 }

@@ -18,7 +18,7 @@
         <h1>Dashboard</h1>
         <h2>Welcome, {{ $user->name }}</h2>
         <h2>Sugar Consumption: {{ $user->getSugarConsumptionToday() }}</h2>
-        <h2>Maximum Sugar Consumption: {{ (int)$user->userData->maxConsumption }}</h2>
+        <h2>Maximum Sugar Consumption: {{ (int)$user->userData->getMaxConsumption() }}</h2>
         <h1>Consoom</h1>
         <form action="{{ route('record.insert') }}" method="POST">
             <select name="food" required>
