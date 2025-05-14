@@ -1,0 +1,24 @@
+@import 'css/global.css';
+
+.header {
+    padding: 45px;
+}
+.body {
+    margin: 0;
+    padding: 45px;
+    font-family: Arial, sans-serif;
+}
+
+.content-card {
+    background-color: white;
+    outline-color: #C8C5C3;
+    outline-style: solid;
+    border-radius: 10px;
+    padding: 16px 24px;
+    margin-bottom: 50px;
+    padding-bottom: 32px;
+}
+
+.progress-legend {
+    display: inline-block;
+}

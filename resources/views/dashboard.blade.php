@@ -4,51 +4,67 @@
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+</head>
+
+<body class="">
+    <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
+    <div class="header">
         <h1>Dashboard</h1>
-        <h2>Welcome, {{ $user->name }}</h2>
-        <h2>Sugar Consumption: {{ $user->getSugarConsumptionToday() }}</h2>
-        <h2>Maximum Sugar Consumption: {{ (int)$user->userData->getMaxConsumption() }}</h2>
-        <h1>Consoom</h1>
-        <form action="{{ route('record.insert') }}" method="POST">
-            <select name="food" required>
-                <option value="" disabled selected>Select Food</option>
-            @foreach ($food_list as $food)
-                <option value="{{ $food->id }}">{{ $food->name }}</option>
-            @endforeach
-            @csrf
-            <select name="emotion_before" required>
-                <option value="" disabled selected>Select Emotion Before</option>
-                <option value="happy">Happy</option>
-                <option value="sad">Sad</option>
-                <option value="angry">Angry</option>
-                <option value="neutral">Neutral</option>
-                <option value="bored">Bored</option>
-            </select>
-            <select name="emotion_after" required>
-                <option value="" disabled selected>Select Emotion Before</option>
-                <option value="happy">Happy</option>
-                <option value="sad">Sad</option>
-                <option value="angry">Angry</option>
-                <option value="neutral">Neutral</option>
-                <option value="bored">Bored</option>
-            </select>
-            <input type="submit" value="Submit">
-        </form>
-        @if ($errors)
-            @foreach ($errors->all() as $error)
-                <p style="color: red;">{{ $error }}</p>
-            @endforeach
-        @endif
-    </body>
+    </div>
+    <div class="body">
+        <div class="content-card">
+            <h3>Konsumsi Gula Hari ini</h3>
+            <h1>{{ $user->getSugarConsumptionToday()  }}g</h1>
+            <h4>dari batas {{  (int) $user->userData->getMaxConsumption()  }}g</h4>
+            <div id="progress-bar" style="background-color: {{ $user->getSugarConsumptionToday() / $user->userData->getMaxConsumption() >= 0.75 ? "#ECE7E7" : "#E7ECEB" }}; width: 273px; height: 12px; border-radius: 10px;"> 
+                <div id="progress" style="border-radius:10px; height:100%; width: {{ $user->getSugarConsumptionToday() / $user->userData->getMaxConsumption() * 100 }}%; background-color: {{ $user->getSugarConsumptionToday() / $user->userData->getMaxConsumption() >= 0.75 ? "#912424" : "#249190" }};"></div>
+                <div id="progress-legend-container" style="width: 100%; display:flex; justify-content: space-between; color: #000000;">
+                    <div class="progress-legend">0</div>
+                    <div class="progress-legend">{{ (int)($user->userData->getMaxConsumption() / 2) }}</div>
+                    <div class="progress-legend">{{ (int)$user->userData->getMaxConsumption() }}</div>
+                </div>
+            </div>
+        </div>
+        <div class="content-card">
+            <form>
+                <h3>Apa yang Anda makan?</h3>
+                <select name="food" required>
+                    <option value="" selected disabled>Pilih makanan</option>
+                    @foreach ($food_list as $food)
+                        <option value="{{ $food->id }}">{{ $food->name }}</option>
+                    @endforeach
+                </select>
+                <h3>Apa yang anda rasakan sebelum makan?</h3>
+                <select name="emotion_before" required>
+                    @section("emotion_selector")
+                    <option value="" selected disabled>Pilih emosi</option>
+                    <option value="excited">Bersemangat</option>
+                    <option value="happy">Senang</option>
+                    <option value="neutral">Biasa</option>
+                    <option value="sad">Sedih</option>
+                    <option value="angry">Marah</option>
+                    @endsection
+                    @yield("emotion_selector")
+                </select>
+                <h3>Apa yang anda rasakan setelah makan?</h3>
+                <select name="emotion_after" required>
+                    @yield("emotion_selector")
+            </form>
+        </div>
+        <div class="content-card">
+        </div>
+    </div>
+</body>
+
 </html>
