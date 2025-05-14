@@ -60,6 +60,8 @@
                 <h3>Apa yang anda rasakan setelah makan?</h3>
                 <select name="emotion_after" required>
                     @yield("emotion_selector")
+                </select>
+                <submit type="submit" value="Submit">
             </form>
         </div>
         <div class="content-card">
