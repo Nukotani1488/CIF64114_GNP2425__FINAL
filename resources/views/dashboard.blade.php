@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="content-card">
-            <form>
+            <form action="{{ route('record.insert') }}" method="POST">
                 <h3>Apa yang Anda makan?</h3>
                 <select name="food" required>
                     <option value="" selected disabled>Pilih makanan</option>
@@ -61,10 +61,17 @@
                 <select name="emotion_after" required>
                     @yield("emotion_selector")
                 </select>
-                <submit type="submit" value="Submit">
+                @csrf
+                <input type="submit" value="Submit">
             </form>
         </div>
         <div class="content-card">
+            @if ($errors)
+                @foreach ($errors->all() as $error)
+                    <p style="color: red;">{{ $error }}</p>
+                @endforeach
+                
+            @endif
         </div>
     </div>
 </body>
