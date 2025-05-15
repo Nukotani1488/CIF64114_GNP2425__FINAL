@@ -11,36 +11,52 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
+    <style>
+        input {
+            display: block;
+            margin: 10px auto;
+        }
+    </style>
 </head>
 
-<body>
+<body class="">
     <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-    <h1>Fill Data</h1>
-    <form action="{{ route('userdata.fill.post') }}" method="POST">
-        <input type="text" name="full_name" placeholder="Your Full Name" required>
-        <input type="number" name="height" placeholder="Your Height" required>
-        <input type="number" name="weight" placeholder="Your Weight" required>
-        <input type="date" name="birth_date" placeholder="Your Birth Date" required>
-        <select name="sex" required>
-            <option value="" disabled selected>Select Your Sex </option>
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-        </select>
-        <select name="plan" required>
-            <option value="" disabled selected>Select Your Plan</option>
-            <option value="0">Normal</option>
-            <option value="1">Weight Loss</option>
-        </select>
-        @csrf
-        <input type="submit" value="Submit">
-    </form>
-    @if ($errors)
-        @foreach ($errors->all() as $error)
-    <p style="color: red;">{{ $error }}</p>
-        @endforeach
-    @endif
+    <div class="header">
+        <h1>Login</h1>
+    </div>
+    <div class="body">
+        <div class="content-card">
+            <form action="{{ route('userdata.fill.post') }}" method="POST">
+                <input type="text" name="full_name" placeholder="Your Full Name" required>
+                <input type="number" name="height" placeholder="Your Height" required>
+                <input type="number" name="weight" placeholder="Your Weight" required>
+                <input type="date" name="birth_date" placeholder="Your Birth Date" required>
+                <select name="sex" required>
+                    <option value="" disabled selected>Select Your Sex </option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+                <select name="plan" required>
+                    <option value="" disabled selected>Select Your Plan</option>
+                    <option value="0">Normal</option>
+                    <option value="1">Weight Loss</option>
+                </select>
+                @csrf
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        <div class="content-card">
+            @if ($errors)
+                @foreach ($errors->all() as $error)
+                    <p style="color: red;">{{ $error }}</p>
+                @endforeach
+            @endif
+        </div>
+    </div>
 </body>
 
 </html>
