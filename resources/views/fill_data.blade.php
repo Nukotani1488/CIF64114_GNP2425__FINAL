@@ -36,14 +36,14 @@
                 <input type="number" name="weight" placeholder="Your Weight" required>
                 <input type="date" name="birth_date" placeholder="Your Birth Date" required>
                 <select name="sex" required>
-                    <option value="" disabled selected>Select Your Sex </option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
+                    <option value="" disabled selected>Pilih jenis kelamin Anda</option>
+                    <option value="male">Laki-laki</option>
+                    <option value="female">Perempuan</option>
                 </select>
                 <select name="plan" required>
-                    <option value="" disabled selected>Select Your Plan</option>
+                    <option value="" disabled selected>Pilih plan Anda</option>
                     <option value="0">Normal</option>
-                    <option value="1">Weight Loss</option>
+                    <option value="1">Penurunah berat badan</option>
                 </select>
                 @csrf
                 <input type="submit" value="Submit">
