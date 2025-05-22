@@ -30,7 +30,7 @@
     </div>
     <div class="body">
         <div class="content-card">
-            <form action="{{ route('userdata.fill.post') }}" method="POST">
+            <form id="userdata-form" action="javascript:void(0);" onsubmit="fillData()">
                 <input type="text" name="full_name" placeholder="Your Full Name" required>
                 <input type="number" name="height" placeholder="Your Height" required>
                 <input type="number" name="weight" placeholder="Your Weight" required>
@@ -58,5 +58,21 @@
         </div>
     </div>
 </body>
-
+<script src="{{ asset('js/global.js') }}"></script>
+<script>
+    async function fillData() {
+        const form = document.getElementById('userdata-form');
+        const submitter = form.querySelector('input[type="submit"]');
+        const formData = new FormData(form, submitter);
+        var payload = "";
+        formData.forEach((value, key) => {
+            payload = payload + key + '=' + value + '&';
+        });
+        const response = await sendData('{{ route('userdata.fill.post') }}', payload);
+        if (response['status'] == 'success') {
+            window.location.href = '{{ route('dashboard.index') }}';
+        }
+    }
+  
+</script>
 </html>

@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="content-card">
-            <form action="{{ route('record.insert') }}" method="POST">
+            <form id="rec-form" action="javascript:void(0);" onsubmit="addRec()">
                 <h3>Apa yang Anda makan?</h3>
                 <select name="food" required>
                     <option value="" selected disabled>Pilih makanan</option>
@@ -75,5 +75,19 @@
         </div>
     </div>
 </body>
-
+<script src="{{ asset('js/global.js') }}"></script>
+<script>
+    async function addRec() {
+        const form = document.getElementById('rec-form');
+        const submitter = form.querySelector('input[type="submit"]');
+        const formData = new FormData(form, submitter);
+        var payload = "";
+        formData.forEach((value, key) => {
+            payload = payload + key + '=' + value + '&';
+        });
+        const response = await sendData('{{ route('record.insert') }}', payload);
+    }
+    async function refreshConsumption() {
+    }
+</script>
 </html>

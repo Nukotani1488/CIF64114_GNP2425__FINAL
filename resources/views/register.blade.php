@@ -30,7 +30,7 @@
     </div>
     <div class="body">
         <div class="content-card">
-            <form action="{{ route('register.post') }}" method="POST">
+            <form id="register-form" action="javascript:void(0)" method="POST" onsubmit="register()">
                 <input type="text" name="name" placeholder="Enter your username" required>
                 <input type="email" name="email" placeholder="Enter your email" required>
                 <input type="password" name="password" placeholder="Enter your password" required>
@@ -50,4 +50,21 @@
         </div>
     </div>
 </body>
+<script src="{{ asset('js/global.js') }}"></script>
+<script>
+    async function register() {
+        const form = document.getElementById('register-form');
+        const submitter = form.querySelector('input[type="submit"]');
+        const formData = new FormData(form, submitter);
+        var payload = "";
+        formData.forEach((value, key) => {
+            payload = payload + key + '=' + value + '&';
+        });
+        const response = await sendData('{{ route('register.post') }}', payload);
+        if (response['status'] == 'success') {
+            window.location.href = '{{ route('login') }}';
+        }
+    }
+
+</script>
 </html>
