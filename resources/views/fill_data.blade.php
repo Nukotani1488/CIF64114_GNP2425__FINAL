@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
     <style>
-        input {
+        input, select {
             display: block;
             margin: 10px auto;
         }
@@ -26,7 +26,7 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
     <div class="header">
-        <h1>Login</h1>
+        <h1>Isi Data Anda</h1>
     </div>
     <div class="body">
         <div class="content-card">

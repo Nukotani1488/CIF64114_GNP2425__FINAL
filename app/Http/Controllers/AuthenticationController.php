@@ -19,9 +19,20 @@ class AuthenticationController extends Controller
             'password' => $validated['password'],
         ];
         if (Auth::attempt($credentials)) {
-            return redirect()->route('dashboard.index');
+            return response()->json([
+                'status' => 'success',
+                'message' => 'User logged in successfully',
+            ]);
         } else if (Auth::attempt(['email' => $validated['name'], 'password' => $validated['password']])) {
-            return redirect()->route('dashboard.index');
+            return json_encode([
+                'status' => 'success',
+                'message' => 'User logged in successfully',
+            ]);
+        } else if (Auth::attempt(['name' => $validated['name'], 'password' => $validated['password']])) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'User logged in successfully',
+            ]);
         } else {
             return redirect()->back()->withErrors([
                 'name' => 'Invalid credentials',
@@ -54,7 +65,10 @@ class AuthenticationController extends Controller
         $user->password = bcrypt($validated['password']);
         $user->save();
 
-        return redirect()->route('login')->with('success', 'User created successfully');
+        return response()->json([
+            'status' => 'success',
+            'message' => 'User registered successfully',
+        ]);
     }
 
     function showLogin(Request $request)

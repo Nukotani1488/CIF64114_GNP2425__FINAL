@@ -26,7 +26,7 @@
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
     <div class="header">
-        <h1>Register/h1>
+        <h1>Register</h1>
     </div>
     <div class="body">
         <div class="content-card">

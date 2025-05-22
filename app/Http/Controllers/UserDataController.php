@@ -30,11 +30,6 @@ class UserDataController extends Controller
 
     function fill_data(Request $request)
     {
-        if (!Auth::check()) {
-            return redirect()->back()->withErrors([
-                'name' => 'You are not logged in',
-            ]);
-        }
         $validated = $request->validate([
             'full_name' => 'required|string|max:255|min:3',
             'height' => 'required|numeric|min:0|max:300',
@@ -64,11 +59,15 @@ class UserDataController extends Controller
             $userData->registered = true;
             $userData->save();
         } else {
-            return redirect()->back()->withErrors([
-                'name' => 'Failed to save user data',
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Failed to save user data',
             ]);
         }
-        return redirect()->route('dashboard.index')->with('success', 'User data saved successfully');
+        return response()->json([
+            'status' => 'success',
+            'message' => 'User data saved successfully',
+        ]);
     }
 
     function showFillData(Request $request)
