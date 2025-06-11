@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title></title>
     <meta name="description" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="{{ asset('css/global.css') }}">
     <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
@@ -56,15 +57,11 @@
         const form = document.getElementById('register-form');
         const submitter = form.querySelector('input[type="submit"]');
         const formData = new FormData(form, submitter);
-        var payload = "";
-        formData.forEach((value, key) => {
-            payload = payload + key + '=' + value + '&';
-        });
-        const response = await sendData('{{ route('register.post') }}', payload);
-        if (response['status'] == 'success') {
-            window.location.href = '{{ route('login') }}';
+        const response = await postForm('{{ route('register.post') }}', formData);
+
+        if (response['status'] === 'success') {
+            window.location.href = "{{ route('dashboard.index') }}";
         }
     }
-
 </script>
 </html>
