@@ -18,24 +18,25 @@ class AuthenticationController extends Controller
             'name' => $validated['name'],
             'password' => $validated['password'],
         ];
-
-        $successResponse = response()->json([
-            'status' => 'success',
-            'message' => 'User logged in successfully',
-        ]);
-
         if (Auth::attempt($credentials)) {
-            return $successResponse;
-        } else if (Auth::attempt(['email' => $validated['name'], 'password' => $validated['password']])) {
-            return $successResponse;
-        } else {
             return response()->json([
-                'status' => 'error',
-                'message' => 'Username or password is incorrect',
-                'errors' => [
-                    'login' => 'Invalid credentials',
-                ],
-            ], 401);
+                'status' => 'success',
+                'message' => 'User logged in successfully',
+            ]);
+        } else if (Auth::attempt(['email' => $validated['name'], 'password' => $validated['password']])) {
+            return json_encode([
+                'status' => 'success',
+                'message' => 'User logged in successfully',
+            ]);
+        } else if (Auth::attempt(['name' => $validated['name'], 'password' => $validated['password']])) {
+            return response()->json([
+                'status' => 'success',
+                'message' => 'User logged in successfully',
+            ]);
+        } else {
+            return redirect()->back()->withErrors([
+                'name' => 'Invalid credentials',
+            ]);
         }
     }
 

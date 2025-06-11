@@ -8,7 +8,6 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,10 +25,10 @@
     <div class="body">
         <div class="content-card">
             <h3>Konsumsi Gula Hari ini</h3>
-            <h1 id='sugar-consumption'></h1>
+            <h1>{{ $user->getSugarConsumptionToday()  }}g</h1>
             <h4>dari batas {{  (int) $user->userData->getMaxConsumption()  }}g</h4>
-            <div id="progress-bar" style="width: 273px; height: 12px; border-radius: 10px;"> 
-                <div id="progress" style="border-radius:10px; height:100%;"></div>
+            <div id="progress-bar" style="background-color: {{ $user->getSugarConsumptionToday() / $user->userData->getMaxConsumption() >= 0.75 ? "#ECE7E7" : "#E7ECEB" }}; width: 273px; height: 12px; border-radius: 10px;"> 
+                <div id="progress" style="border-radius:10px; height:100%; width: {{ $user->getSugarConsumptionToday() / $user->userData->getMaxConsumption() * 100 }}%; background-color: {{ $user->getSugarConsumptionToday() / $user->userData->getMaxConsumption() >= 0.75 ? "#912424" : "#249190" }};"></div>
                 <div id="progress-legend-container" style="width: 100%; display:flex; justify-content: space-between; color: #000000;">
                     <div class="progress-legend">0</div>
                     <div class="progress-legend">{{ (int)($user->userData->getMaxConsumption() / 2) }}</div>
@@ -78,36 +77,17 @@
 </body>
 <script src="{{ asset('js/global.js') }}"></script>
 <script>
-    refreshConsumption();
     async function addRec() {
         const form = document.getElementById('rec-form');
         const submitter = form.querySelector('input[type="submit"]');
         const formData = new FormData(form, submitter);
-        const response = await postForm('{{ route('record.insert') }}', formData);
-
-        if (response['status'] === 'success') {
-            refreshConsumption();
-        } else {
-        }
+        var payload = "";
+        formData.forEach((value, key) => {
+            payload = payload + key + '=' + value + '&';
+        });
+        const response = await sendData('{{ route('record.insert') }}', payload);
     }
     async function refreshConsumption() {
-        const response = await getJson('{{ route('statistic.today_consumption') }}');
-
-        if (response['status'] === 'success') {
-            const sugar = response['data']['sugar'];
-            const sugarPercentage = sugar / {{ $user->userData->getMaxConsumption() }} * 100;
-
-            var progressBar = document.getElementById('progress');
-            var progressBarContainer = document.getElementById('progress-bar');
-            var sugarConsumptionContainer = document.getElementById('sugar-consumption');
-
-            sugarConsumptionContainer.innerHTML = sugar + 'g';
-
-            progressBar.style.width = (sugarPercentage <= 100 ? sugarPercentage : 100) + '%';
-
-            progressBarContainer.style.backgroundColor = sugarPercentage >= 75 ? "#ECE7E7" : "#E7ECEB";
-            progressBar.style.backgroundColor = sugarPercentage >= 75 ? "#912424" : "#249190";
-        }
     }
 </script>
 </html>
