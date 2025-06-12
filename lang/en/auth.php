@@ -1,0 +1,23 @@
+<?php
+return [
+    "welcome" => "Welcome Back!",
+    "create" => "Create an Account",
+    "login" => "Login",
+    "register" => "Register",
+    "logout" => "Logout",
+    "email" => "Email",
+    "name" => "Name",
+    "username" => "Username",
+    "password" => "Password",
+    "confirm_password" => "Confirm Password",
+    "remember_me" => "Remember Me",
+    "account_exists" => "Have an account already?",
+    "account_does_not_exist" => "Don't have an account yet?",
+    "login_success" => "Login successful",
+    "login_failed" => "Login failed, please check your credentials",
+    "registration_success" => "Registration successful, you can now login",
+    "registration_failed" => "Registration failed, please try again",
+    "logout_success" => "Logout successful",
+    "logout_failed" => "Logout failed, please try again",
+    "username_or_email" => "Username or Email",
+];

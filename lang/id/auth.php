@@ -1,0 +1,22 @@
+<?php
+return [
+    "welcome" => "Selamat datang kembali!",
+    "login" => "Login",
+    "register" => "Register",
+    "logout" => "Logout",
+    "email" => "Email",
+    "name" => "Name",
+    "username" => "Username",
+    "password" => "Password",
+    "confirm_password" => "Pastikan Password",
+    "remember_me" => "Ingat Saya",
+    "account_exists" => "Sudah punya akun?",
+    "account_does_not_exist" => "Belum punya akun?",
+    "login_success" => "Login berhasil",
+    "login_failed" => "Login gagal, silakan periksa username atau email dan password Anda",
+    "registration_success" => "Registrasi berhasil, Anda sekarang dapat masuk",
+    "registration_failed" => "Registrasi gagal, silakan coba lagi",
+    "logout_success" => "Logout berhasil",
+    "logout_failed" => "Logout gagal, silakan coba lagi",
+    "username_or_email" => "Username atau Email",
+];
