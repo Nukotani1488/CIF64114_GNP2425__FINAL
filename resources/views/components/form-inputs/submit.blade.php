@@ -1,0 +1,1 @@
+<input value="{{ $placeholder }}" type="submit" class="block bg-chocolate hover:bg-chocolate-light focus:outline-none rounded-sm text-white"> 

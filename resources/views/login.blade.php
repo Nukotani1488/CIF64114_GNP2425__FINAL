@@ -1,20 +1,21 @@
-<!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title></title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    </head>
-    <body>
-        <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-        
-    </body>
-</html>
+@extends('layouts.auth')
+
+@section('title', 'Login')
+
+@section('auth-content')
+
+@section('auth-message')
+    <div class="auth-message text-center">
+        <p class="text-3xl font-bold mb-4">{{ strtoupper(__('auth.welcome')) }}</p>
+    </div>
+@endsection
+
+@section('auth-content')
+    <form id="login-form" class="flex-col justify-center h-[60%] w-full" method="post" action="{{ route('login.post') }}">
+        <x-form-inputs type="text" name="username" placeholder="{{ __('auth.username_or_email') }}"></x-form-inputs>
+        <x-form-inputs type="password" name="password" placeholder="{{ __('auth.password') }}"></x-form-inputs>
+        <x-form-inputs type="submit" placeholder="{{ strtoupper(__('auth.login')) }}" style="display:block; height:10%; width:80%;"></x-form-inputs> 
+        @csrf
+    </form>
+    <p>{{ __('auth.account_does_not_exist') }} <a href='{{ route('register') }}'>{{ __('auth.register') }}</a></p>
+@endsection

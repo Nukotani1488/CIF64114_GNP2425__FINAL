@@ -12,7 +12,7 @@ return [
     "confirm_password" => "Confirm Password",
     "remember_me" => "Remember Me",
     "account_exists" => "Have an account already?",
-    "account_does_not_exist" => "Don't have an account yet?",
+    "account_does_not_exist" => "Do not have an account yet?",
     "login_success" => "Login successful",
     "login_failed" => "Login failed, please check your credentials",
     "registration_success" => "Registration successful, you can now login",
