@@ -11,7 +11,10 @@ function sendForm(form, url, successCallback, errorCallback) {
         url: url,
         data: form.serialize(),
         success: successCallback, 
-        error: errorCallback
+        error: errorCallback,
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+        },
     });
 }
 

@@ -5,7 +5,7 @@ return [
     "gram" => "g",
     "limit" => "of",
     "note_head" => "What Did You Eat?",
-    "feeling_before" => "What did you feel before eating",
-    "feeling_after" => "What did you feel after eating",
+    "feeling_before" => "How Did You Feel Before You Ate",
+    "feeling_after" => "How Did You Feel After You Ate",
     "note" => "Submit",
 ];

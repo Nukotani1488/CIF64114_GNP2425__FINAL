@@ -14,16 +14,16 @@ class RecordController extends Controller
     {
         $validated = $request->validate([
             'food' => 'required|integer',
-            'emotion_before' => 'string|max:255',
-            'emotion_after' => 'string|max:255',
+            'emotion-before' => 'required|string|max:255',
+            'emotion-after' => 'required|string|max:255',
         ]);
         $validated['food'] = (int)$validated['food'];
 
         $record = new Record();
         $record->uid = $request->user()->id;
         $record->gid = $validated['food'];
-        $record->emotion_before = $validated['emotion_before'];
-        $record->emotion_after = $validated['emotion_after'];
+        $record->emotion_before = $validated['emotion-before'];
+        $record->emotion_after = $validated['emotion-after'];
 
         if ($record->save()) {
             return response()->json([

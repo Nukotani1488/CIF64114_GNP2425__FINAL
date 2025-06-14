@@ -17,7 +17,6 @@
 @section('script')
 <script type="module">
     function successCallback(message) {
-        console.log(message);
         $('.alert').css('display', 'block');
         $('.alert-content').html(message.message);
         window.location.replace(message.redirect);

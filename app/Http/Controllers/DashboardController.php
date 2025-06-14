@@ -17,7 +17,6 @@ class DashboardController extends Controller
         }
         return view('dashboard', [
             'user' => $request->user(),
-            'food_list' => Food::all(),
         ]);
     }
 }

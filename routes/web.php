@@ -8,6 +8,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RecordController;
 use App\Http\Controllers\StatisticController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\FoodController;
 
 Route::get('/', function () {
     return view('index');
@@ -54,4 +55,10 @@ Route::controller(ProfileController::class)
     ->name('profile')
     ->group(function() {
         Route::get('/profile', 'show')->name('.index');
+});
+
+Route::controller(FoodController::class)
+    ->name('food')
+    ->group(function() {
+        Route::post('/food_search', 'search')->name('.search');
 });
