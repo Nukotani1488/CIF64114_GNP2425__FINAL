@@ -6,6 +6,8 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\UserDataController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\RecordController;
+use App\Http\Controllers\StatisticController;
+use App\Http\Controllers\ProfileController;
 
 Route::get('/', function () {
     return view('index');
@@ -38,4 +40,18 @@ Route::controller(RecordController::class)
     ->name('record')
     ->group(function () {
         Route::post('/insert_record', 'insert')->name('.insert');
+});
+
+Route::controller(StatisticController::class)
+    ->middleware('auth')
+    ->name('stats')
+    ->group(function() {
+        Route::get('/stats', 'show')->name('.index');
+});
+
+Route::controller(ProfileController::class)
+    ->middleware('auth')
+    ->name('profile')
+    ->group(function() {
+        Route::get('/profile', 'show')->name('.index');
 });

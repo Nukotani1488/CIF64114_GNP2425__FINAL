@@ -8,12 +8,17 @@ use Illuminate\View\Component;
 
 class Sidebar extends Component
 {
-    /**
-     * Create a new component instance.
-     */
-    public function __construct()
+    public $routes;
+
+    public function __construct(
+        public $currentPage,
+    )
     {
-        //
+        $this->routes = [
+            __('sidebar.profile') => route('profile.index'),
+            __('sidebar.dashboard') => route('dashboard.index'),
+            __('sidebar.stats') => route('stats.index'),
+        ];
     }
 
     /**

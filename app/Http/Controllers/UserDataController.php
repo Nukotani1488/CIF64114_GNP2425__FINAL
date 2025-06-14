@@ -67,6 +67,7 @@ class UserDataController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'User data saved successfully',
+            'redirect' => route('dashboard.index')
         ]);
     }
 

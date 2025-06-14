@@ -8,5 +8,6 @@ class StatisticController extends Controller
 {
     function show(Request $request)
     {
+        return view('statistics');
     }
 }
