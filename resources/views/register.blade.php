@@ -11,11 +11,11 @@
 @endsection
 
 @section('auth-content')
-    <form id="login-form" class="flex-col justify-center h-[60%] w-full" method="post" action="{{ route('login.post') }}">
-        <x-form-inputs type="text" name="username" placeholder="{{ __('auth.username') }}"></x-form-inputs>
-        <x-form-inputs type="email" name="username" placeholder="{{ __('auth.email') }}"></x-form-inputs>
+    <form id="content-form" class="flex-col justify-center h-[60%] w-full">
+        <x-form-inputs type="text" name="name" placeholder="{{ __('auth.username') }}"></x-form-inputs>
+        <x-form-inputs type="email" name="email" placeholder="{{ __('auth.email') }}"></x-form-inputs>
         <x-form-inputs type="password" name="password" placeholder="{{ __('auth.password') }}"></x-form-inputs>
-        <x-form-inputs type="password" name="password" placeholder="{{ __('auth.confirm_password') }}"></x-form-inputs>
+        <x-form-inputs type="password" name="password_confirmation" placeholder="{{ __('auth.confirm_password') }}"></x-form-inputs>
         <x-form-inputs type="submit" placeholder="{{ strtoupper(__('auth.register')) }}" style="display:block; height:10%; width:80%;"></x-form-inputs> 
         @csrf
     </form>

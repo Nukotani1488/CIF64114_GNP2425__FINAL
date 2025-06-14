@@ -11,8 +11,8 @@
 @endsection
 
 @section('auth-content')
-    <form id="login-form" class="flex-col justify-center h-[60%] w-full" method="post" action="{{ route('login.post') }}">
-        <x-form-inputs type="text" name="username" placeholder="{{ __('auth.username_or_email') }}"></x-form-inputs>
+    <form id="content-form" class="flex-col justify-center h-[60%] w-full">
+        <x-form-inputs type="text" name="name" placeholder="{{ __('auth.username_or_email') }}"></x-form-inputs>
         <x-form-inputs type="password" name="password" placeholder="{{ __('auth.password') }}"></x-form-inputs>
         <x-form-inputs type="submit" placeholder="{{ strtoupper(__('auth.login')) }}" style="display:block; height:10%; width:80%;"></x-form-inputs> 
         @csrf
