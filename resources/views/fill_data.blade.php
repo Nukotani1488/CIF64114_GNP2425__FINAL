@@ -21,7 +21,7 @@
             <select name="plan" required>
                 <option value="" disabled selected>{{ __('fill.plan') }}</option>
                 <option value="0">Normal</option>
-                <option value="1">Penurunah berat badan</option>
+                <option value="1">Penurunan berat badan</option>
             </select>
             <x-form-inputs type="submit" placeholder="Submit"></x-form-inputs>
             @csrf
